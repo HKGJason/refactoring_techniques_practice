@@ -7,11 +7,11 @@ import java.util.Vector;
 
 public class OwingPrinter {
     void printOwing(String name, List<Order> orders) {
-        Iterator<Order> elements = orders.iterator();
 
+        Iterator<Order> elements = orders.iterator();
         printBanner();
 
-        double outstanding = getOutstanding(orders);
+        double outstanding = getOutstanding(elements);
 
         printDetails(name, outstanding);
 
@@ -28,10 +28,10 @@ public class OwingPrinter {
         System.out.println ("****** Customer totals ******");
         System.out.println ("*****************************");
     }
-    private double getOutstanding(List<Order> orders){
+    private double getOutstanding(Iterator<Order> elements){
         double outstanding = 0.0;
-        while (orders.iterator().hasNext()){
-            Order order = (Order) orders.iterator().next();
+        while (elements.hasNext()){
+            Order order = (Order)elements.next();
             outstanding += order.getAmount();
         }
         return outstanding;

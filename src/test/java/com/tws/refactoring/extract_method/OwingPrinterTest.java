@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.*;
 
 import static org.junit.Assert.*;
 
@@ -25,7 +26,14 @@ public class OwingPrinterTest {
 
     @Test
     public void printOwing() {
-//        System.out.print("hello");
-//        assertEquals("hello", outContent.toString());
+        List<Order> orders = new ArrayList<>();
+        orders.add(new Order(1));
+        OwingPrinter owingPrinter = new OwingPrinter();
+        owingPrinter.printOwing("ABC", orders);
+        assertEquals("*****************************" +System.getProperty("line.separator")+
+                "****** Customer totals ******" +System.getProperty("line.separator")+
+                "*****************************" +System.getProperty("line.separator")+
+                "name: ABC" +System.getProperty("line.separator")+
+                "amount: 1.0"+System.getProperty("line.separator"), outContent.toString());
     }
 }
